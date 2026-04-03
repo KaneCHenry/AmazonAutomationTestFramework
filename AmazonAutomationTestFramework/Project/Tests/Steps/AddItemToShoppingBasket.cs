@@ -40,7 +40,7 @@ namespace AmazonAutomationTestFramework.Project.Tests.Steps
         public void WhenTheUserSearchesAndSelectsAnItemToPurchase()
         {
             var homePage = new Homepage(_driver);
-            homePage.SearchItem("chicken");
+            homePage.SearchItem("mirror");
             var searchResult = new SearchResultPage(_driver);
             searchResult.ScrollAndClickResult();
             var kettle = new ProductPage(_driver);
