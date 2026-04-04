@@ -13,17 +13,39 @@ namespace AmazonAutomationTestFramework.Project.Tests.Pages
     {
         
         private By searchResult => By.CssSelector(".a-text-bold");
-        private By kettleAdvert => By.CssSelector("img.s-image");
-        public void validateSearchResult()
+        private By Advert => By.CssSelector("img.s-image");
+
+
+        /*  public void validateSearchResult()
+         {
+              assertIsDisplayed(searchResult);
+              var resultText = Driver.FindElement(searchResult).Text.Trim('"');
+
+             // Assert.That(resultText, Is.EqualTo(resultText));
+          } */
+        public void ValidateSearchResult(string expectedSearchTerm)
         {
             assertIsDisplayed(searchResult);
-            var resultText = Driver.FindElement(searchResult).Text.Trim('"');
-            Assert.That(resultText, Is.EqualTo(Items.phone));
+
+            string actual = Driver.FindElement(searchResult)
+                                  .Text
+                                  .Trim()
+                                  .Trim('"')
+                                  .ToLowerInvariant();
+
+            string expected = expectedSearchTerm
+                              .Trim()
+                              .ToLowerInvariant();
+
+            Assert.That(actual, Is.EqualTo(expected),
+                $"Expected '{expected}' but found '{actual}'");
         }
+
+
         public void ScrollAndClickResult()
         {
-            ScrollToElement(kettleAdvert);
-            Click(kettleAdvert);
+            ScrollToElement(Advert);
+            Click(Advert);
         }
 
     }

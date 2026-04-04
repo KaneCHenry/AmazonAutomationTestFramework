@@ -40,13 +40,17 @@ namespace AmazonAutomationTestFramework.Project.Tests.Steps
         public void WhenTheUserSearchesAndSelectsAnItemToPurchase()
         {
             var homePage = new Homepage(_driver);
-            homePage.SearchItem("mirror");
+            homePage.SearchItem("wallet");
+
             var searchResult = new SearchResultPage(_driver);
-            searchResult.ScrollAndClickResult();
-            var kettle = new ProductPage(_driver);
-            kettle.ValidatePageComponents();
-            kettle.ClickAddToBasket();
+            searchResult.ValidateSearchResult(homePage.LastSearchTerm);
+            searchResult.ScrollAndClickResult();   // <-- YOU NEED THIS
+
+            var product = new ProductPage(_driver);
+            product.ValidatePageComponents();
+            product.ClickAddToBasket();
         }
+
 
         [Then("that item is reflected in the shopping basket as expected")]
         public void ThenThatItemIsReflectedInTheShoppingBasketAsExpected()

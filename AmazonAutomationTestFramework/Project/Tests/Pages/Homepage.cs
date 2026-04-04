@@ -7,6 +7,7 @@ using OpenQA.Selenium;
 using AmazonAutomationTestFramework.Project.Tests.Pages;
 using Reqnroll;
 using System.Xml.Linq;
+using System.Security.Cryptography.X509Certificates;
 
 namespace AmazonAutomationTestFramework.Project.Tests.Pages
 {
@@ -19,6 +20,16 @@ namespace AmazonAutomationTestFramework.Project.Tests.Pages
         private By Basket => By.CssSelector(".nav-cart-icon");
         private By footer => By.CssSelector(".navFooterLinkCol.navAccessibility");
         private By searchBtn => By.Id("nav-search-submit-button");
+        public string LastSearchTerm { get; private set; }
+
+        public void SearchItem(string searchTerm)
+        {
+            LastSearchTerm = searchTerm; 
+
+            Driver.FindElement(SearchField)
+                  .SendKeys(searchTerm + Keys.Enter);
+        }
+  
         public void commonpagecomponents()
         {
             assertIsDisplayed(AmazonLogo);
@@ -27,11 +38,11 @@ namespace AmazonAutomationTestFramework.Project.Tests.Pages
             assertIsDisplayed(Basket);
             assertIsDisplayed(footer);
         } 
-        public void SearchItem(string text)
+/*        public void SearchItem(string text)
         {
             Type(SearchField, text);
             Click(searchBtn);
-        }
+        } */
         /*
         private By GetProductByName(string productName)
         {
