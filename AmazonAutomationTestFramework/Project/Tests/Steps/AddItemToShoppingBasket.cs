@@ -42,10 +42,6 @@ namespace AmazonAutomationTestFramework.Project.Tests.Steps
             var homePage = new Homepage(_driver);
             homePage.SearchItem("wallet");
 
-            var searchResult = new SearchResultPage(_driver);
-            searchResult.ValidateSearchResult(homePage.LastSearchTerm);
-            searchResult.ScrollAndClickResult();   // <-- YOU NEED THIS
-
             var product = new ProductPage(_driver);
             product.ValidatePageComponents();
             product.ClickAddToBasket();

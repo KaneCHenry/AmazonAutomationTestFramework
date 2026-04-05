@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 
@@ -77,6 +78,13 @@ namespace AmazonAutomationTestFramework.Project.Tests.Pages
         {
             return Wait.Until(d => d.FindElement(locator));
         }
+        public void ScrollAndClickResult(By locator)
+        {
+            ScrollToElement(locator);
+            WaitUntilClickable(locator);
+        }
+
+
         protected void SearchForProduct(string productname)
         {
             

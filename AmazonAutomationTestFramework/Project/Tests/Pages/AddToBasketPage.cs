@@ -1,5 +1,6 @@
 ﻿
 using OpenQA.Selenium;
+using static AmazonAutomationTestFramework.Project.Tests.Pages.CommonBasePage;
 
 namespace AmazonAutomationTestFramework.Project.Tests.Pages
 {
@@ -23,7 +24,22 @@ namespace AmazonAutomationTestFramework.Project.Tests.Pages
            var cartAmount = GetText(shoppingBasket);
             Assert.That(cartAmount, Is.EqualTo(expectedAmount));
         }
+        public void AssertMultipleItemsPresent(List<string> expectedItems)
+        {
+            foreach (var item in expectedItems)
+            {
+                assertIsDisplayed(By.XPath($"//span[contains(text(), '{item}')]"));
+            }
+        }
 
-        
+
+
+
+
+
     }
+
+
+
 }
+

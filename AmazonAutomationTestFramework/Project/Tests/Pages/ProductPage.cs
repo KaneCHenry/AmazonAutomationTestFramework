@@ -9,14 +9,17 @@ namespace AmazonAutomationTestFramework.Project.Tests.Pages
 {
     public class ProductPage(IWebDriver driver) : CommonBasePage(driver)
     {
+        private IWebDriver driver;
+
+
         //Element Locators
-        private By productName => By.Id("productTitle");
+        public static By productName => By.Id("productTitle");
         private By priceWholeNumber => By.CssSelector(".a-price-whole");
         private By priceFractionNumber => By.CssSelector(".a-price-fraction");
         
 
         //button locator:
-        private By addToBasket => By.Id("add-to-cart-button");
+        public static By addToBasket => By.Id("add-to-cart-button");
 
 
         public void ValidatePageComponents()

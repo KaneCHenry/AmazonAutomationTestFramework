@@ -8,6 +8,7 @@ using AmazonAutomationTestFramework.Project.Tests.Pages;
 using Reqnroll;
 using System.Xml.Linq;
 using System.Security.Cryptography.X509Certificates;
+using static AmazonAutomationTestFramework.Project.Tests.Pages.CommonBasePage;
 
 namespace AmazonAutomationTestFramework.Project.Tests.Pages
 {
@@ -20,6 +21,9 @@ namespace AmazonAutomationTestFramework.Project.Tests.Pages
         private By Basket => By.CssSelector(".nav-cart-icon");
         private By footer => By.CssSelector(".navFooterLinkCol.navAccessibility");
         private By searchBtn => By.Id("nav-search-submit-button");
+
+      
+
         public string LastSearchTerm { get; private set; }
 
         public void SearchItem(string searchTerm)
@@ -37,12 +41,32 @@ namespace AmazonAutomationTestFramework.Project.Tests.Pages
             assertIsDisplayed(NavigationBar);
             assertIsDisplayed(Basket);
             assertIsDisplayed(footer);
-        } 
-/*        public void SearchItem(string text)
+        }
+        public void AddMultipleItemsToBasket()
         {
-            Type(SearchField, text);
-            Click(searchBtn);
-        } */
+            var itemsToAdd = new List<string>
+            {
+                "Selenium WebDriver Book",
+                 "USB-C Cable",
+                 "Wireless Mouse"
+            };
+
+           foreach (var item in itemsToAdd)
+            {
+                SearchItem(item); 
+                ScrollAndClickResult(SearchResultPage.Advert);
+             
+             
+              
+            }
+        }
+
+
+        /*        public void SearchItem(string text)
+                {
+                    Type(SearchField, text);
+                    Click(searchBtn);
+                } */
         /*
         private By GetProductByName(string productName)
         {

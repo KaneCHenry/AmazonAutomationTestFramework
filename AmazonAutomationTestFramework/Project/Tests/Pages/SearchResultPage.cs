@@ -13,7 +13,7 @@ namespace AmazonAutomationTestFramework.Project.Tests.Pages
     {
         
         private By searchResult => By.CssSelector(".a-text-bold");
-        private By Advert => By.CssSelector("img.s-image");
+        public static By Advert => By.CssSelector("img.s-image");
 
 
         /*  public void validateSearchResult()
