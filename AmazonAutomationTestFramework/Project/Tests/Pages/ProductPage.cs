@@ -9,8 +9,6 @@ namespace AmazonAutomationTestFramework.Project.Tests.Pages
 {
     public class ProductPage(IWebDriver driver) : CommonBasePage(driver)
     {
-        private IWebDriver driver;
-
 
         //Element Locators
         public static By productName => By.Id("productTitle");
@@ -24,10 +22,10 @@ namespace AmazonAutomationTestFramework.Project.Tests.Pages
 
         public void ValidatePageComponents()
         {
-            assertIsDisplayed(productName);
-            assertIsDisplayed(priceWholeNumber);
-            assertIsDisplayed(priceFractionNumber);
-            assertIsDisplayed(addToBasket);
+            AssertIsDisplayed(productName);
+            AssertIsDisplayed(priceWholeNumber);
+            AssertIsDisplayed(priceFractionNumber);
+            AssertIsDisplayed(addToBasket);
         
         }
 

@@ -22,51 +22,106 @@ namespace AmazonAutomationTestFramework.Project.Tests.Pages
         private By footer => By.CssSelector(".navFooterLinkCol.navAccessibility");
         private By searchBtn => By.Id("nav-search-submit-button");
 
-      
+        private By cartBtn => By.Name("submit.add-to-cart");
+
+        private By SearchSuggestionList = By.ClassName("left-pane-results-container");
+
+        private By SearchList = By.Id(PathConfig.searchDiv);
+
+        //constants 
+        private static readonly Random random = new Random();
+
+        private readonly List<string> searchNum = new()
+        {
+          "01", "02", "03", "04", "05"
+        };
+
+        private string randomNumber;
+
+        public void SelectRandomSuggestion()
+        {
+          string value = searchNum[random.Next(searchNum.Count)];
+
+          var locator = By.XPath($"//*[@id='{PathConfig.searchDiv}']//span[contains(text(), '{value}')]");
+
+           Find(locator).Click();
+        }
+
+        
+
+
+
 
         public string LastSearchTerm { get; private set; }
-
         public void SearchItem(string searchTerm)
         {
-            LastSearchTerm = searchTerm; 
+            LastSearchTerm = searchTerm;
 
-            Driver.FindElement(SearchField)
-                  .SendKeys(searchTerm + Keys.Enter);
+            var field = Driver.FindElement(SearchField);
+            field.Clear();
+            field.SendKeys(searchTerm + Keys.Enter);
         }
-  
+
+
         public void commonpagecomponents()
         {
-            assertIsDisplayed(AmazonLogo);
-            assertIsDisplayed(SearchField);
-            assertIsDisplayed(NavigationBar);
-            assertIsDisplayed(Basket);
-            assertIsDisplayed(footer);
+            AssertIsDisplayed(AmazonLogo);
+            AssertIsDisplayed(SearchField);
+            AssertIsDisplayed(NavigationBar);
+            AssertIsDisplayed(Basket);
+            AssertIsDisplayed(footer);
         }
+        public void ClearAndType(IWebElement element, string text)
+        {
+            element.Click();
+            element.SendKeys(Keys.Control + "a");
+            element.SendKeys(Keys.Delete);
+            element.SendKeys(text);
+        }
+
         public void AddMultipleItemsToBasket()
         {
-            var itemsToAdd = new List<string>
+           var itemsToAdd = new List<string>
             {
-                "Selenium WebDriver Book",
-                 "USB-C Cable",
-                 "Wireless Mouse"
+                "Fountain pen",
+                 "Stapler",
+                 "Headphones"
             };
 
-           foreach (var item in itemsToAdd)
+            foreach (var item in itemsToAdd)
             {
-                SearchItem(item); 
+                SearchItem(item);
                 ScrollAndClickResult(SearchResultPage.Advert);
-             
-             
-              
+
+                Clickbutton();
+
             }
+
         }
 
+        public void Clickbutton()
+        {
+            Click(cartBtn);
+        }
 
-        /*        public void SearchItem(string text)
-                {
-                    Type(SearchField, text);
-                    Click(searchBtn);
-                } */
+        public void ValidateSearchSuggestions()
+        {
+           WaitUntilVisible(SearchSuggestionList);
+            AssertIsDisplayed(SearchSuggestionList);
+        }
+
+   
+        
+
+        public void EnterItemIntoSearchBar(string text)
+        {
+          Type(SearchField, text);
+        } 
+        public void SearchClear()
+        {
+            Find(SearchField).Clear();
+        }
+      
         /*
         private By GetProductByName(string productName)
         {
@@ -80,13 +135,10 @@ namespace AmazonAutomationTestFramework.Project.Tests.Pages
             Driver.FindElement(productLocator).Click();
         }*/
     }
-
 }
 
-
-
+ 
      
  
-
 
 

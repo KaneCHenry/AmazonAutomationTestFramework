@@ -16,9 +16,7 @@ namespace AmazonAutomationTestFramework.Project.Tests.Pages
                 this.Driver = Driver;
                 Wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
             }
-       public class Homepage(IWebDriver driver) : CommonBasePage(driver)
-        {
-        }
+     
 
         private static string BaseUrl = PathConfig.BaseUrl;
         
@@ -45,7 +43,7 @@ namespace AmazonAutomationTestFramework.Project.Tests.Pages
         {
             Driver.FindElement(locator).SendKeys(text);
         }
-        protected void assertIsDisplayed(By locator)
+        protected void AssertIsDisplayed(By locator)
         {
             var isElementDisplayed = Driver.FindElement(locator).Displayed;
             Assert.That(isElementDisplayed, Is.True);
@@ -67,6 +65,7 @@ namespace AmazonAutomationTestFramework.Project.Tests.Pages
             var elementText = Driver.FindElement(locator).Text;
             return elementText;
         }
+   
         protected void ScrollToElement(By locator)
         {
             var element = Driver.FindElement(locator);
@@ -81,14 +80,16 @@ namespace AmazonAutomationTestFramework.Project.Tests.Pages
         public void ScrollAndClickResult(By locator)
         {
             ScrollToElement(locator);
-            WaitUntilClickable(locator);
+            Click(locator);
         }
 
-
+        
         protected void SearchForProduct(string productname)
         {
             
         }
+
+      
     }
 }
       

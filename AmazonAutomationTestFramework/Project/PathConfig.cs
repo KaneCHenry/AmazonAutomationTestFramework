@@ -9,5 +9,7 @@ namespace AmazonAutomationTestFramework.Project
     public class PathConfig
     {
         public static string BaseUrl = "https://www.amazon.co.uk/";
+
+        public static string searchDiv = "sac-suggestion-row-";
     }
 }

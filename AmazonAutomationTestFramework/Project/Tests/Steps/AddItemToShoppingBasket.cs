@@ -6,9 +6,6 @@ using System.Threading.Tasks;
 using AmazonAutomationTestFramework.Project.Tests.Pages;
 using OpenQA.Selenium;
 using Reqnroll;
-using AmazonAutomationTestFramework.Project.Tests.Pages;
-using OpenQA.Selenium;
-using Reqnroll;
 
 namespace AmazonAutomationTestFramework.Project.Tests.Steps
 {

@@ -18,18 +18,18 @@ namespace AmazonAutomationTestFramework.Project.Tests.Features
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Reqnroll", "3.0.0.0")]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::NUnit.Framework.TestFixtureAttribute()]
-    [global::NUnit.Framework.DescriptionAttribute("Amazon First BDD")]
+    [global::NUnit.Framework.DescriptionAttribute("UserIsAbleToRemoveItemsFromShoppingBasket")]
     [global::NUnit.Framework.FixtureLifeCycleAttribute(global::NUnit.Framework.LifeCycle.InstancePerTestCase)]
-    public partial class AmazonFirstBDDFeature
+    public partial class UserIsAbleToRemoveItemsFromShoppingBasketFeature
     {
         
         private global::Reqnroll.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-        private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new global::System.Globalization.CultureInfo("en-US"), "Project/Tests/Features", "Amazon First BDD", "Item is displayed on the amazon search result", global::Reqnroll.ProgrammingLanguage.CSharp, featureTags, InitializeCucumberMessages());
+        private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new global::System.Globalization.CultureInfo("en-US"), "Project/Tests/Features", "UserIsAbleToRemoveItemsFromShoppingBasket", "remove items basket feature", global::Reqnroll.ProgrammingLanguage.CSharp, featureTags, InitializeCucumberMessages());
         
-#line 1 "01.SearchItem.feature"
+#line 1 "05.UserIsAbleToRemoveItemsFromShoppingBasket.feature"
 #line hidden
         
         [global::NUnit.Framework.OneTimeSetUpAttribute()]
@@ -105,22 +105,23 @@ namespace AmazonAutomationTestFramework.Project.Tests.Features
         
         private static global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages InitializeCucumberMessages()
         {
-            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Project/Tests/Features/01.SearchItem.feature.ndjson", 3);
+            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Project/Tests/Features/05.UserIsAbleToRemoveItemsFromShoppingBasket.feature.ndjso" +
+                    "n", 3);
         }
         
         [global::NUnit.Framework.TestAttribute()]
-        [global::NUnit.Framework.DescriptionAttribute("User is able to search for an item")]
+        [global::NUnit.Framework.DescriptionAttribute("user is able to remove items from shopping basket")]
         [global::NUnit.Framework.CategoryAttribute("tag1")]
-        public async global::System.Threading.Tasks.Task UserIsAbleToSearchForAnItem()
+        public async global::System.Threading.Tasks.Task UserIsAbleToRemoveItemsFromShoppingBasket()
         {
             string[] tagsOfScenario = new string[] {
                     "tag1"};
             global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
             string pickleIndex = "0";
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("User is able to search for an item", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("user is able to remove items from shopping basket", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
-#line 8
+#line 6
 this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -130,14 +131,9 @@ this.ScenarioInitialize(scenarioInfo, ruleInfo);
             else
             {
                 await this.ScenarioStartAsync();
-#line 9
- await testRunner.GivenAsync("User is on the amazon homepage", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
-#line hidden
-#line 10
- await testRunner.WhenAsync("the user types an item into the search field", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
-#line hidden
-#line 11
- await testRunner.ThenAsync("item is displayed in the search result", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line 7
+ await testRunner.GivenAsync("the user is on the amazon hompe and there are items displayed in the search baske" +
+                        "t", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();

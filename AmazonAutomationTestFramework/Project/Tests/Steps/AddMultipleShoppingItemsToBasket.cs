@@ -37,7 +37,16 @@ namespace AmazonAutomationTestFramework.Project.Tests.Steps
         {
             var homePage = new Homepage(_driver);
             homePage.AddMultipleItemsToBasket();
+
+          
         }
+        [Then("user is able to see the correct amount of items in the shopping basket")]
+        public void ThenUserIsAbleToSeeTheCorrectAmountOfItemsInTheShoppingBasket()
+        {
+            var addToBasket = new AddToBasketPage(_driver);
+            addToBasket.countItems("3");
+        }
+
 
 
 
