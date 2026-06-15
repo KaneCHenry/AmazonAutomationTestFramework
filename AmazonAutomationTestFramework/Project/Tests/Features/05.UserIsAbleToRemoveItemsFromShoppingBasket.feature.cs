@@ -132,8 +132,15 @@ this.ScenarioInitialize(scenarioInfo, ruleInfo);
             {
                 await this.ScenarioStartAsync();
 #line 7
- await testRunner.GivenAsync("the user is on the amazon hompe and there are items displayed in the search baske" +
-                        "t", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+ await testRunner.GivenAsync("the user is on the amazon hompage and there are items displayed in the search bas" +
+                        "ket", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+#line hidden
+#line 8
+ await testRunner.WhenAsync("the user clicks on the shopping basket and is on the shopping basket page", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+#line hidden
+#line 9
+ await testRunner.ThenAsync("the user is able to remove items from the cart and the cart amount reflects remai" +
+                        "ning number correctly", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();

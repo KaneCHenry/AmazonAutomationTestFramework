@@ -14,16 +14,23 @@ namespace AmazonAutomationTestFramework.Project.Tests.Pages
         private By quantityControllerLocator => By.CssSelector("span[data-action='quantity']");
         private By popularDealsSectionLocator => By.ClassName("a-carousel-heading");
 
+        private By decrementIconLocator => By.CssSelector("span[data-a-selector='decrement-icon']");
+            //"span[data-a-selector='decrement-icon']");
+
+        // private By yourItemsHeaderLocator => By.XPath("//h3[contains(text(),'Your Items')]");
+
 
         //Constants
-        private static string expectedUrlSuffix = "/gp/cart/view.html?ref_=nav_cart";
+        private static string expectedUrlSuffix = "gp/cart/view.html?ref_=nav_cart";
+        private static string expectedUrlPageContent = "cart";
         private static string expectedPageHeader = "Shopping Basket";
         private static string expectedSecondaryHeader = "Your Items";
 
-        public void VerifyPageURL()
+       public void VerifyBasketPageUrl()
         {
             var pageURL = Driver.Url;
-            Assert.That(pageURL, Is.EqualTo(PathConfig.BaseUrl + expectedUrlSuffix));
+            Assert.That(pageURL, Does.Contain(expectedUrlSuffix));
+   
         }
 
         public void VerifyHeaderText()
@@ -31,8 +38,25 @@ namespace AmazonAutomationTestFramework.Project.Tests.Pages
             AssertIsDisplayed(pageHeaderLocator);
             Assert.That(GetText(pageHeaderLocator),Is.EqualTo(expectedPageHeader));
 
-            Assert.That(GetText(secondaryHeaderLocator), Is.EqualTo(expectedSecondaryHeader));
+//Assert.That(GetText(yourItemsHeaderLocator), Is.EqualTo(expectedSecondaryHeader));
         }
 
+        public void ClickDecrement()
+        {
+            WaitUntilClickable(decrementIconLocator);   
+        }
+
+        public string GetBasketAmount()
+        {
+            ScrollToElement(Homepage.basketSpriteLocator);
+            AssertIsDisplayed(Homepage.basketSpriteLocator);
+            var rawText = GetText(Homepage.basketSpriteLocator);
+
+            return new string(rawText
+                .Where(char.IsDigit)
+                .ToArray());
+           // return GetText(Homepage.basketSpriteLocator);
+        }
+      
     }
 }

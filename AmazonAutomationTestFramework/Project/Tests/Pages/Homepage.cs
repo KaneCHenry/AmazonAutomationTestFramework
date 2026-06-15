@@ -9,24 +9,30 @@ using Reqnroll;
 using System.Xml.Linq;
 using System.Security.Cryptography.X509Certificates;
 using static AmazonAutomationTestFramework.Project.Tests.Pages.CommonBasePage;
+using OpenQA.Selenium.DevTools.V143.DOM;
 
 namespace AmazonAutomationTestFramework.Project.Tests.Pages
 {
-    [Binding]
+   
     public class Homepage(IWebDriver driver) : CommonBasePage(driver)
     {
-        private By AmazonLogo => By.Id("nav-logo-sprites");
-        private By SearchField => By.Id("twotabsearchtextbox");
-        private By NavigationBar => By.Id("nav-xshop");
-        private By Basket => By.CssSelector(".nav-cart-icon");
-        private By footer => By.CssSelector(".navFooterLinkCol.navAccessibility");
-        private By searchBtn => By.Id("nav-search-submit-button");
+        private By amazonLogoLocator => By.Id("nav-logo-sprites");
+        private By searchFieldLocator => By.Id("twotabsearchtextbox");
+        private By navigationBarLocator => By.Id("nav-xshop");
+        public static By basketLocator=> By.CssSelector(".nav-cart-icon");
 
-        private By cartBtn => By.Name("submit.add-to-cart");
+        public static By basketSpriteLocator => By.Id("nav-cart");
+        private By footerLocator => By.CssSelector(".navFooterLinkCol.navAccessibility");
+        private By searchBtnLocator => By.Id("nav-search-submit-button");
+       // private By cartBtnLocator => By.Name("submit.add-to-cart");
 
-        private By SearchSuggestionList = By.ClassName("left-pane-results-container");
+        private By cartBtnLocator => By.Id("add-to-cart-button");
 
-        private By SearchList = By.Id(PathConfig.searchDiv);
+        private By searchSuggestionListLocator = By.ClassName("left-pane-results-container");
+
+        private By searchListLocator = By.Id(PathConfig.searchDiv);
+        private By signInAccountLocator => By.LinkText("Sign in securely");
+
 
         //constants 
         private static readonly Random random = new Random();
@@ -48,28 +54,37 @@ namespace AmazonAutomationTestFramework.Project.Tests.Pages
         }
 
         
-
-
-
+        public void ClickAccountSignIn()
+        {
+            Click(signInAccountLocator);
+        }
+        public void ClickBasket()
+        {
+            Click(basketSpriteLocator);
+        }
 
         public string LastSearchTerm { get; private set; }
         public void SearchItem(string searchTerm)
         {
             LastSearchTerm = searchTerm;
 
-            var field = Driver.FindElement(SearchField);
+            var field = Driver.FindElement(searchFieldLocator);
             field.Clear();
             field.SendKeys(searchTerm + Keys.Enter);
         }
 
+        public void ClickSignInAndAccountList()
+        {
+            WaitUntilClickable(signInAccountLocator);
+        }
 
         public void commonpagecomponents()
         {
-            AssertIsDisplayed(AmazonLogo);
-            AssertIsDisplayed(SearchField);
-            AssertIsDisplayed(NavigationBar);
-            AssertIsDisplayed(Basket);
-            AssertIsDisplayed(footer);
+            AssertIsDisplayed(amazonLogoLocator);
+            AssertIsDisplayed(searchFieldLocator);
+            AssertIsDisplayed(navigationBarLocator);
+            AssertIsDisplayed(basketLocator);
+            AssertIsDisplayed(footerLocator);
         }
         public void ClearAndType(IWebElement element, string text)
         {
@@ -85,7 +100,7 @@ namespace AmazonAutomationTestFramework.Project.Tests.Pages
             {
                 "Fountain pen",
                  "Stapler",
-                 "Headphones"
+                 "hoodie"
             };
 
             foreach (var item in itemsToAdd)
@@ -94,6 +109,7 @@ namespace AmazonAutomationTestFramework.Project.Tests.Pages
                 ScrollAndClickResult(SearchResultPage.Advert);
 
                 Clickbutton();
+                Thread.Sleep(2000);
 
             }
 
@@ -101,13 +117,13 @@ namespace AmazonAutomationTestFramework.Project.Tests.Pages
 
         public void Clickbutton()
         {
-            Click(cartBtn);
+            Click(cartBtnLocator);
         }
 
         public void ValidateSearchSuggestions()
         {
-           WaitUntilVisible(SearchSuggestionList);
-            AssertIsDisplayed(SearchSuggestionList);
+           WaitUntilVisible(searchSuggestionListLocator);
+            AssertIsDisplayed(searchSuggestionListLocator);
         }
 
    
@@ -115,11 +131,11 @@ namespace AmazonAutomationTestFramework.Project.Tests.Pages
 
         public void EnterItemIntoSearchBar(string text)
         {
-          Type(SearchField, text);
+          Type(searchFieldLocator, text);
         } 
         public void SearchClear()
         {
-            Find(SearchField).Clear();
+            Find(searchFieldLocator).Clear();
         }
       
         /*

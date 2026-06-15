@@ -26,14 +26,12 @@ namespace AmazonAutomationTestFramework.Project.Tests.Pages
             AssertIsDisplayed(priceWholeNumber);
             AssertIsDisplayed(priceFractionNumber);
             AssertIsDisplayed(addToBasket);
-        
         }
 
         public void ClickAddToBasket()
         {
             ScrollToElement(addToBasket);
             Click(addToBasket);
-           
         }
 
         public class ExpectedItemSearched

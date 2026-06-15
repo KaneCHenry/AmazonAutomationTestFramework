@@ -17,14 +17,6 @@ namespace AmazonAutomationTestFramework.Project.Tests.Pages
         private By searchResult => By.CssSelector(".a-text-bold");
         public static By Advert => By.CssSelector("img[class='s-image']");
 
-
-        /*  public void validateSearchResult()
-         {
-              assertIsDisplayed(searchResult);
-              var resultText = Driver.FindElement(searchResult).Text.Trim('"');
-
-             // Assert.That(resultText, Is.EqualTo(resultText));
-          } */
         public void ValidateSearchResult(string expectedSearchTerm)
         {
             AssertIsDisplayed(searchResult);

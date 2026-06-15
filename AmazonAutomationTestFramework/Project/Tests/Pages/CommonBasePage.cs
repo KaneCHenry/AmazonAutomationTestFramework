@@ -37,7 +37,7 @@ namespace AmazonAutomationTestFramework.Project.Tests.Pages
         }
         public void WaitUntilClickable(By locator)
         {
-            Wait.Until(ExpectedConditions.ElementToBeClickable(locator));
+            Wait.Until(ExpectedConditions.ElementToBeClickable(locator)).Click();
         }
         public void Typer(By locator, string text)
         {
@@ -82,14 +82,14 @@ namespace AmazonAutomationTestFramework.Project.Tests.Pages
             ScrollToElement(locator);
             Click(locator);
         }
-
-        
-        protected void SearchForProduct(string productname)
+        protected bool WaitUntilContains(By locator, string containing)
         {
-            
+            return Wait.Until(d =>
+                d.FindElement(locator).Text.Contains(containing)
+            );
         }
 
-      
+
     }
 }
       

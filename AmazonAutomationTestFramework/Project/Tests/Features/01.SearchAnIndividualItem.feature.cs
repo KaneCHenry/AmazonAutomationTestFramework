@@ -29,7 +29,7 @@ namespace AmazonAutomationTestFramework.Project.Tests.Features
         
         private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new global::System.Globalization.CultureInfo("en-US"), "Project/Tests/Features", "Amazon First BDD", "Item is displayed on the amazon search result", global::Reqnroll.ProgrammingLanguage.CSharp, featureTags, InitializeCucumberMessages());
         
-#line 1 "01.SearchAnIndivItem.feature"
+#line 1 "01.SearchAnIndividualItem.feature"
 #line hidden
         
         [global::NUnit.Framework.OneTimeSetUpAttribute()]
@@ -105,7 +105,7 @@ namespace AmazonAutomationTestFramework.Project.Tests.Features
         
         private static global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages InitializeCucumberMessages()
         {
-            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Project/Tests/Features/01.SearchAnIndivItem.feature.ndjson", 3);
+            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Project/Tests/Features/01.SearchAnIndividualItem.feature.ndjson", 3);
         }
         
         [global::NUnit.Framework.TestAttribute()]
