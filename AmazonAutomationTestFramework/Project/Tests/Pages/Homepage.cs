@@ -32,8 +32,6 @@ namespace AmazonAutomationTestFramework.Project.Tests.Pages
 
         private By searchListLocator = By.Id(PathConfig.searchDiv);
         private By signInAccountLocator => By.LinkText("Sign in securely");
-
-
         //constants 
         private static readonly Random random = new Random();
 
@@ -42,6 +40,7 @@ namespace AmazonAutomationTestFramework.Project.Tests.Pages
           "01", "02", "03", "04", "05"
         };
 
+      
         private string randomNumber;
 
         public void SelectRandomSuggestion()
