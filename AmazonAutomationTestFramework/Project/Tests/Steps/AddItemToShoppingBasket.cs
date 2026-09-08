@@ -6,9 +6,6 @@ using System.Threading.Tasks;
 using AmazonAutomationTestFramework.Project.Tests.Pages;
 using OpenQA.Selenium;
 using Reqnroll;
-using AmazonAutomationTestFramework.Project.Tests.Pages;
-using OpenQA.Selenium;
-using Reqnroll;
 
 namespace AmazonAutomationTestFramework.Project.Tests.Steps
 {
@@ -40,13 +37,13 @@ namespace AmazonAutomationTestFramework.Project.Tests.Steps
         public void WhenTheUserSearchesAndSelectsAnItemToPurchase()
         {
             var homePage = new Homepage(_driver);
-            homePage.SearchItem("mirror");
-            var searchResult = new SearchResultPage(_driver);
-            searchResult.ScrollAndClickResult();
-            var kettle = new ProductPage(_driver);
-            kettle.ValidatePageComponents();
-            kettle.ClickAddToBasket();
+            homePage.SearchItem("wallet");
+
+            var product = new ProductPage(_driver);
+            product.ValidatePageComponents();
+            product.ClickAddToBasket();
         }
+
 
         [Then("that item is reflected in the shopping basket as expected")]
         public void ThenThatItemIsReflectedInTheShoppingBasketAsExpected()

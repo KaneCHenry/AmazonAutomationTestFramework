@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 
@@ -15,9 +16,7 @@ namespace AmazonAutomationTestFramework.Project.Tests.Pages
                 this.Driver = Driver;
                 Wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
             }
-       public class Homepage(IWebDriver driver) : CommonBasePage(driver)
-        {
-        }
+     
 
         private static string BaseUrl = PathConfig.BaseUrl;
         
@@ -38,13 +37,13 @@ namespace AmazonAutomationTestFramework.Project.Tests.Pages
         }
         public void WaitUntilClickable(By locator)
         {
-            Wait.Until(ExpectedConditions.ElementToBeClickable(locator));
+            Wait.Until(ExpectedConditions.ElementToBeClickable(locator)).Click();
         }
         public void Typer(By locator, string text)
         {
             Driver.FindElement(locator).SendKeys(text);
         }
-        protected void assertIsDisplayed(By locator)
+        protected void AssertIsDisplayed(By locator)
         {
             var isElementDisplayed = Driver.FindElement(locator).Displayed;
             Assert.That(isElementDisplayed, Is.True);
@@ -66,6 +65,7 @@ namespace AmazonAutomationTestFramework.Project.Tests.Pages
             var elementText = Driver.FindElement(locator).Text;
             return elementText;
         }
+   
         protected void ScrollToElement(By locator)
         {
             var element = Driver.FindElement(locator);
@@ -77,10 +77,19 @@ namespace AmazonAutomationTestFramework.Project.Tests.Pages
         {
             return Wait.Until(d => d.FindElement(locator));
         }
-        protected void SearchForProduct(string productname)
+        public void ScrollAndClickResult(By locator)
         {
-            
+            ScrollToElement(locator);
+            Click(locator);
         }
+        protected bool WaitUntilContains(By locator, string containing)
+        {
+            return Wait.Until(d =>
+                d.FindElement(locator).Text.Contains(containing)
+            );
+        }
+
+
     }
 }
       

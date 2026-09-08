@@ -15,14 +15,25 @@ namespace AmazonAutomationTestFramework.Project.Hooks
             _scenarioContext = scenarioContext;
         }
 
-        [BeforeScenario]
+      /* [BeforeScenario]
         public void BeforeScenario()
         {
-            var driver = new ChromeDriver();
+            var options = new ChromeOptions();
+            options.AddArgument("--incognito");
+
+            var driver = new ChromeDriver(options);
             driver.Manage().Window.Maximize();
 
             _scenarioContext.Set(driver, "WebDriver");
-        }
+        }  */
+        [BeforeScenario]
+          public void BeforeScenario()
+          {
+              var driver = new ChromeDriver();
+              driver.Manage().Window.Maximize();
+
+              _scenarioContext.Set(driver, "WebDriver");
+          } 
 
         [AfterScenario]
         public void AfterScenario()
