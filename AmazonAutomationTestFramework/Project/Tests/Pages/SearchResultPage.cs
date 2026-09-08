@@ -20,6 +20,28 @@ namespace AmazonAutomationTestFramework.Project.Tests.Pages
         public static By Advert => By.CssSelector("img[class='s-image']");
         public static By searchResultsHeaderLocator => By.CssSelector("h2.a-size-base.a-spacing-small.a-spacing-top-small.a-text-normal");
 
+        public string getWholePriceNum()
+        {
+            var priceLocator = driver.FindElements(By.CssSelector(".a-price-whole"));
+            var itemPrice = priceLocator[0].Text;
+
+            return itemPrice;
+        }
+        public string getFractionPriceNum()
+        {
+            var priceFractionLocator = Driver.FindElements(By.CssSelector(".a-price-fraction"));
+            var itemFractionPrice = priceFractionLocator[0].Text.Trim();
+
+            return itemFractionPrice;   
+        }
+        
+        public string getPrice()
+        {
+            var wholePrice = getWholePriceNum();
+            var fractionPrice = getFractionPriceNum();
+            
+            return $"{wholePrice}.{fractionPrice}";
+        }
         public static By resultPagePriceLocator => By.CssSelector(".a-price .a-offscreen");
         public void SetMaximumPriceValue(int price)
         {
